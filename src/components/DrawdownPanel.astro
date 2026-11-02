@@ -1,5 +1,14 @@
 ---
 import Field from "./Field.astro";
+import HowCalculated from "./HowCalculated.astro";
+
+const how = [
+  "Value after = position value x (100 - drawdown %) / 100",
+  "Amount lost = position value x drawdown % / 100",
+  "Gain to recover % = drawdown % / (100 - drawdown %) x 100",
+  "At a 100% drawdown the value is 0, so no gain can restore it.",
+  "Each row applies to the starting position value. Rows do not compound.",
+];
 ---
 
 <div class="panel-head">
@@ -37,6 +46,7 @@ import Field from "./Field.astro";
         <p class="notes" data-out="notes" hidden></p>
       </div>
     </div>
+    <HowCalculated lines={how} />
   </div>
 </div>
 <p class="sr-only" id="dd-live" aria-live="polite"></p>

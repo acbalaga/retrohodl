@@ -1,5 +1,15 @@
 ---
 import Field from "./Field.astro";
+import HowCalculated from "./HowCalculated.astro";
+
+const how = [
+  "Cost per unit incl. buy fee = entry / (1 - buy fee %)",
+  "Break-even sell price = entry / ((1 - buy fee %) x (1 - sell fee %))",
+  "Move from entry % = (break-even price / entry - 1) x 100",
+  "Sell price for a target gain = entry x (1 + target %) / ((1 - buy fee %) x (1 - sell fee %))",
+  "Per unit, cash out is entry / (1 - buy fee %). Selling at Q returns Q x (1 - sell fee %). Break-even sets the two equal.",
+  "Target gain is measured against total cash spent, buy fee included.",
+];
 ---
 
 <div class="panel-head">
@@ -38,6 +48,7 @@ import Field from "./Field.astro";
         <p class="muted" data-out="target-missing" hidden>Add a target gain to see that price.</p>
       </div>
     </div>
+    <HowCalculated lines={how} />
   </div>
 </div>
 <p class="sr-only" id="be-live" aria-live="polite"></p>

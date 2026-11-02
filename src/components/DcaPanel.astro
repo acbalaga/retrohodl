@@ -1,5 +1,19 @@
 ---
 import Field from "./Field.astro";
+import HowCalculated from "./HowCalculated.astro";
+
+const how = [
+  "Fee each period = amount x fee %",
+  "Units bought = amount x (1 - fee %) / price",
+  "Total invested = periods x amount",
+  "Fees paid = periods x amount x fee %",
+  "Avg cost per unit (incl. fees) = total invested / units acquired",
+  "Avg price paid (excl. fees) = (total invested - fees paid) / units acquired",
+  "Value at final price = units acquired x final price (selling fees not included)",
+  "Profit / loss = value at final price - total invested",
+  "Profit / loss % = profit / loss / total invested x 100",
+  "Start price + % change: price in period i = start x (1 + change %)^(i - 1), so period 1 uses the start price",
+];
 ---
 
 <div class="panel-head">
@@ -67,6 +81,7 @@ import Field from "./Field.astro";
         </details>
       </div>
     </div>
+    <HowCalculated lines={how} />
   </div>
 </div>
 <p class="sr-only" id="dca-live" aria-live="polite"></p>
