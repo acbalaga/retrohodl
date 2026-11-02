@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <pattern id="scan" width="4" height="4" patternUnits="userSpaceOnUse">
+      <rect width="4" height="1" y="3" fill="#000" fill-opacity="0.25"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="#0B0D0A"/>
+  <rect x="60" y="60" width="1080" height="510" rx="24" fill="#12160F" stroke="#2E3828" stroke-width="2"/>
+  <text x="120" y="290" font-family="DejaVu Sans Mono, Menlo, monospace" font-size="120" font-weight="700" fill="#FFB000">RETROHODL</text>
+  <rect x="860" y="200" width="56" height="96" fill="#3DFF7A"/>
+  <text x="124" y="380" font-family="DejaVu Sans Mono, Menlo, monospace" font-size="40" fill="#E8F0DF">DCA · Break-even · Drawdown</text>
+  <text x="124" y="450" font-family="DejaVu Sans Mono, Menlo, monospace" font-size="30" fill="#A3B096">Plain arithmetic on your own numbers.</text>
+  <rect width="1200" height="630" fill="url(#scan)"/>
+</svg>

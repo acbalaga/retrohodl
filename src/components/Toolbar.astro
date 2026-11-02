@@ -1,0 +1,19 @@
+<div class="toolbar">
+  <div class="field">
+    <label for="currency">Currency symbol</label>
+    <select id="currency" aria-describedby="currency-hint">
+      <option value="USD">USD ($)</option>
+      <option value="PHP">PHP (₱)</option>
+      <option value="EUR">EUR (€)</option>
+    </select>
+    <p class="hint" id="currency-hint">Display only. No conversion.</p>
+  </div>
+  <div class="share">
+    <button id="share-copy" class="btn" type="button">Copy link</button>
+    <span id="share-status" role="status"></span>
+  </div>
+</div>
+<p id="url-notice" class="notice" hidden>
+  <span>Some values in this link could not be read and were reset to defaults.</span>
+  <button id="url-notice-dismiss" class="btn btn-text" type="button">Dismiss</button>
+</p>

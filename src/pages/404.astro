@@ -1,0 +1,19 @@
+---
+import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Base noindex>
+  <Header wordmarkIsH1={false} />
+  <main class="container">
+    <h1 class="panel-title glow">404</h1>
+    <p>This page does not exist.</p>
+    <p><a href="/">Back to the calculators</a></p>
+  </main>
+  <Footer />
+  <script>
+    import { initCrtToggle } from "../scripts/toolbar";
+    initCrtToggle();
+  </script>
+</Base>

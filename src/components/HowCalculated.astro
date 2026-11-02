@@ -1,0 +1,13 @@
+---
+interface Props {
+  lines: string[];
+}
+const { lines } = Astro.props;
+---
+
+<details class="how">
+  <summary>How this is calculated</summary>
+  <ul>
+    {lines.map((l) => <li><code>{l}</code></li>)}
+  </ul>
+</details>

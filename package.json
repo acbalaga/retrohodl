@@ -1,0 +1,28 @@
+{
+  "name": "retrohodl",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "test": "vitest run",
+    "check": "astro check",
+    "lint:copy": "node scripts/check-copy.mjs",
+    "build": "npm run lint:copy && vitest run && astro check && astro build",
+    "preview": "astro preview",
+    "images": "node scripts/make-images.mjs"
+  },
+  "dependencies": {
+    "@fontsource/jetbrains-mono": "5.3.0",
+    "@fontsource/vt323": "5.3.0",
+    "astro": "5.18.2"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.12",
+    "sharp": "0.35.5",
+    "typescript": "5.9.3",
+    "vitest": "3.2.7"
+  }
+}

@@ -1,0 +1,27 @@
+---
+import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Tabs from "../components/Tabs.astro";
+import Toolbar from "../components/Toolbar.astro";
+import DcaPanel from "../components/DcaPanel.astro";
+import BreakEvenPanel from "../components/BreakEvenPanel.astro";
+import DrawdownPanel from "../components/DrawdownPanel.astro";
+---
+
+<Base skipTo="calculator">
+  <Header />
+  <main id="calculator" class="container" tabindex="-1">
+    <noscript><p class="noscript">These calculators need JavaScript. Nothing you type is sent anywhere.</p></noscript>
+    <Toolbar />
+    <Tabs>
+      <div slot="dca"><DcaPanel /></div>
+      <div slot="be"><BreakEvenPanel /></div>
+      <div slot="dd"><DrawdownPanel /></div>
+    </Tabs>
+  </main>
+  <Footer />
+  <script>
+    import "../scripts/main.ts";
+  </script>
+</Base>

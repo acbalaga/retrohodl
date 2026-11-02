@@ -1,0 +1,59 @@
+/* static scanlines + vignette, above content, never intercepts input */
+body.crt::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1000;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgb(0 0 0 / 0) 0px,
+      rgb(0 0 0 / 0) 2px,
+      rgb(0 0 0 / 0.16) 2px,
+      rgb(0 0 0 / 0.16) 3px
+    ),
+    radial-gradient(ellipse at center, rgb(0 0 0 / 0) 60%, rgb(0 0 0 / 0.35) 100%);
+}
+
+/* slow faint roll band: the only ambient motion */
+body.crt::after {
+  content: "";
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: -20vh;
+  height: 20vh;
+  pointer-events: none;
+  z-index: 1001;
+  background: linear-gradient(to bottom, rgb(255 176 0 / 0), rgb(255 176 0 / 0.035), rgb(255 176 0 / 0));
+  animation: crt-roll 9s linear infinite;
+}
+@keyframes crt-roll { to { transform: translateY(140vh); } }
+
+.cursor { color: var(--color-green); text-shadow: var(--glow-green); animation: blink 1.1s steps(1, end) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+/* Reduced motion: no animation at all. Static scanlines stay. */
+@media (prefers-reduced-motion: reduce) {
+  body.crt::after { display: none; }
+  .cursor { animation: none; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
+}
+
+/* Higher contrast requested, or user switched effects off: remove overlays and glow */
+@media (prefers-contrast: more) {
+  body.crt::before, body.crt::after { display: none; }
+  .glow, .cursor { text-shadow: none; }
+}
+html.fx-off body.crt::before, html.fx-off body.crt::after { display: none; }
+html.fx-off .glow, html.fx-off .cursor { text-shadow: none; }
+
+@media (forced-colors: active) {
+  body.crt::before, body.crt::after { display: none; }
+}
+@media print {
+  body.crt::before, body.crt::after { display: none; }
+}
+
+.glow { text-shadow: var(--glow-amber); }

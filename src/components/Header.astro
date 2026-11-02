@@ -1,0 +1,21 @@
+---
+import Disclaimer from "./Disclaimer.astro";
+
+interface Props {
+  /** TODO(plan): the 404 page needs its own h1 ("404"), so the wordmark is a paragraph there. */
+  wordmarkIsH1?: boolean;
+}
+const { wordmarkIsH1 = true } = Astro.props;
+const Tag = wordmarkIsH1 ? "h1" : "p";
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <Tag class="wordmark glow">RetroHODL<span class="cursor" aria-hidden="true">█</span></Tag>
+      <p class="tagline">Plain arithmetic on your own numbers.</p>
+      <Disclaimer />
+    </div>
+    <button id="crt-toggle" class="btn btn-ghost" type="button" aria-pressed="true">CRT effects</button>
+  </div>
+</header>

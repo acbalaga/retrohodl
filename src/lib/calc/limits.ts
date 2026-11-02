@@ -1,0 +1,9 @@
+export const MAX_MONEY = 1e12;
+export const MAX_PERIODS = 600;
+export const MAX_DCA_ROWS = 120;
+export const MAX_DD_ROWS = 20;
+export const MIN_PATH_PRICE = 1e-12;
+export const MAX_PATH_PRICE = 1e15;
+export const MAX_CHANGE_PCT = 1000;
+export const MAX_TARGET_PCT = 10000;
+export const ZERO_EPS_REL = 1e-9;

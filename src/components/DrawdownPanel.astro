@@ -1,0 +1,52 @@
+---
+import Field from "./Field.astro";
+import HowCalculated from "./HowCalculated.astro";
+
+const how = [
+  "Value after = position value x (100 - drawdown %) / 100",
+  "Amount lost = position value x drawdown % / 100",
+  "Gain to recover % = drawdown % / (100 - drawdown %) x 100",
+  "At a 100% drawdown the value is 0, so no gain can restore it.",
+  "Each row applies to the starting position value. Rows do not compound.",
+];
+---
+
+<div class="panel-head">
+  <h2 class="panel-title glow">Drawdown</h2>
+  <p class="panel-intro">How far a position falls, and the gain it takes to get back.</p>
+</div>
+<div class="panel-grid">
+  <form class="card" id="dd-form" novalidate>
+    <div class="fields">
+      <Field id="dd-value" label="Position value" prefix="currency" />
+      <div>
+        <p class="field-legend" id="dd-rows-label">Drawdowns</p>
+        <ol id="dd-rows" class="rows" aria-labelledby="dd-rows-label"></ol>
+        <p class="error" id="dd-pcts-error" hidden></p>
+        <div class="rows-actions"><button id="dd-add-row" class="btn" type="button">Add drawdown</button></div>
+      </div>
+    </div>
+    <div class="card-actions"><button id="dd-reset" class="btn btn-text" type="button">Reset</button></div>
+  </form>
+
+  <div class="card">
+    <div class="results" id="dd-results">
+      <div data-state="empty" class="result-empty"><span data-out="empty-text">Fill in the fields to see results.</span></div>
+      <div data-state="invalid" class="result-invalid" hidden><span data-out="invalid-text"></span></div>
+      <div data-state="ok" hidden>
+        <div class="table-wrap" role="region" aria-label="Drawdown results" tabindex="0">
+          <table>
+            <caption class="sr-only">Drawdown results</caption>
+            <thead>
+              <tr><th scope="col">Drawdown</th><th scope="col">Value after</th><th scope="col">Amount lost</th><th scope="col">Gain to recover</th></tr>
+            </thead>
+            <tbody data-out="tbody"></tbody>
+          </table>
+        </div>
+        <p class="notes" data-out="notes" hidden></p>
+      </div>
+    </div>
+    <HowCalculated lines={how} />
+  </div>
+</div>
+<p class="sr-only" id="dd-live" aria-live="polite"></p>
