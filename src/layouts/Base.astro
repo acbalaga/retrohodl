@@ -5,8 +5,11 @@ import "../styles/base.css";
 
 interface Props {
   noindex?: boolean;
+  /** id of the element the skip link jumps to; omit for no skip link */
+  skipTo?: string;
+  skipLabel?: string;
 }
-const { noindex = false } = Astro.props;
+const { noindex = false, skipTo, skipLabel = "Skip to calculator" } = Astro.props;
 ---
 
 <!doctype html>
@@ -35,6 +38,7 @@ const { noindex = false } = Astro.props;
     <meta name="twitter:card" content="summary_large_image" />
   </head>
   <body class="crt">
+    {skipTo && <a class="skip-link" href={`#${skipTo}`}>{skipLabel}</a>}
     <slot />
   </body>
 </html>
