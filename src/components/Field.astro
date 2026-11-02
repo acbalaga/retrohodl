@@ -1,0 +1,30 @@
+---
+interface Props {
+  id: string;
+  label: string;
+  hint?: string;
+  /** "currency" renders the live currency symbol; any other string is shown literally */
+  prefix?: string;
+  suffix?: string;
+  optional?: boolean;
+  disabled?: boolean;
+}
+const { id, label, hint, prefix, suffix, optional = false, disabled = false } = Astro.props;
+const describedBy = [hint ? `${id}-hint` : null, `${id}-error`].filter(Boolean).join(" ");
+const wrapClass = ["input-wrap", prefix ? "has-prefix" : "", suffix ? "has-suffix" : ""].filter(Boolean).join(" ");
+---
+
+<div class="field" data-field={id}>
+  <label for={id}>{label}{optional && <span class="optional"> (optional)</span>}</label>
+  <div class={wrapClass}>
+    {prefix && (
+      <span class="adorn adorn-prefix" {...(prefix === "currency" ? { "data-currency-symbol": "" } : {})} aria-hidden="true">
+        {prefix === "currency" ? "$" : prefix}
+      </span>
+    )}
+    <input id={id} type="text" inputmode="decimal" autocomplete="off" spellcheck="false" enterkeyhint="next" aria-describedby={describedBy} disabled={disabled} />
+    {suffix && <span class="adorn adorn-suffix" aria-hidden="true">{suffix}</span>}
+  </div>
+  {hint && <p class="hint" id={`${id}-hint`}>{hint}</p>}
+  <p class="error" id={`${id}-error`} hidden></p>
+</div>
