@@ -147,3 +147,4 @@ summary { cursor: pointer; min-height: var(--tap-min); display: flex; align-item
 .toolbar { align-items: flex-start; }
 .share { padding-top: calc(1.3125rem + var(--space-2)); }
 .how code { overflow-wrap: anywhere; }
+.site-header + main h1.panel-title { margin-bottom: var(--space-3); }
