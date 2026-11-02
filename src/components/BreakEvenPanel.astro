@@ -1,0 +1,43 @@
+---
+import Field from "./Field.astro";
+---
+
+<div class="panel-head">
+  <h2 class="panel-title glow">Break-even</h2>
+  <p class="panel-intro">The sell price that covers your entry and both fees.</p>
+</div>
+<div class="panel-grid">
+  <form class="card" id="be-form" novalidate>
+    <div class="fields">
+      <Field id="be-entry" label="Entry price per unit" prefix="currency" hint="Price before fees. If your cost already includes fees, set the buy fee to 0." />
+      <Field id="be-buy-fee" label="Buy fee" suffix="%" />
+      <Field id="be-sell-fee" label="Sell fee" suffix="%" />
+      <Field id="be-target" label="Target gain" suffix="%" optional hint="Gain on total cash spent, after both fees." />
+    </div>
+    <div class="card-actions"><button id="be-reset" class="btn btn-text" type="button">Reset</button></div>
+  </form>
+
+  <div class="card">
+    <div class="results" id="be-results">
+      <div data-state="empty" class="result-empty">Fill in the fields to see results.</div>
+      <div data-state="invalid" class="result-invalid" hidden><span data-out="invalid-text"></span></div>
+      <div data-state="ok" hidden>
+        <div class="headline">
+          <p class="headline-label">Break-even sell price</p>
+          <p class="headline-value" data-out="price"></p>
+          <p class="headline-sub"><span data-out="move"></span> from entry</p>
+        </div>
+        <dl class="stats">
+          <div class="stat"><dt>Cost per unit incl. buy fee</dt><dd data-out="cost"></dd></div>
+        </dl>
+        <div class="target-block" data-out="target-block" hidden>
+          <p class="headline-label" data-out="target-label"></p>
+          <p class="big" data-out="target-price"></p>
+          <p class="headline-sub"><span data-out="target-move"></span> from entry</p>
+        </div>
+        <p class="muted" data-out="target-missing" hidden>Add a target gain to see that price.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<p class="sr-only" id="be-live" aria-live="polite"></p>
