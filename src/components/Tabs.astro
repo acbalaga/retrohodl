@@ -1,0 +1,25 @@
+---
+const tabs = [
+  { id: "dca", label: "DCA Plan" },
+  { id: "be", label: "Break-even" },
+  { id: "dd", label: "Drawdown" },
+];
+---
+
+<div class="tabs" role="tablist" aria-label="Calculators">
+  {tabs.map((t, i) => (
+    <button
+      class="tab"
+      role="tab"
+      type="button"
+      id={`tab-${t.id}`}
+      aria-controls={`panel-${t.id}`}
+      aria-selected={i === 0 ? "true" : "false"}
+      tabindex={i === 0 ? 0 : -1}
+      data-tab={t.id}
+    >{t.label}</button>
+  ))}
+</div>
+<section class="tabpanel" role="tabpanel" id="panel-dca" aria-labelledby="tab-dca" tabindex="0"><slot name="dca" /></section>
+<section class="tabpanel" role="tabpanel" id="panel-be" aria-labelledby="tab-be" tabindex="0" hidden><slot name="be" /></section>
+<section class="tabpanel" role="tabpanel" id="panel-dd" aria-labelledby="tab-dd" tabindex="0" hidden><slot name="dd" /></section>
