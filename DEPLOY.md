@@ -1,6 +1,26 @@
-# Deploying retrohodl.xyz to Cloudflare Pages
+# Deploying retrohodl.xyz to Cloudflare
 
-## Project settings
+Two routes. Both serve `dist/` and both read `public/_headers` for the CSP and security headers.
+
+## Route A: Workers (static assets), uses `wrangler.jsonc`
+
+Workers & Pages > Create > Import a repository, then:
+
+| Setting | Value |
+|---|---|
+| Repository | `acbalaga/retrohodl` |
+| Production branch | `main` (an existing branch; the build fails at "Cloning" if the branch was deleted) |
+| Root directory | `/` (blank). This is a folder path, not a branch name |
+| Build command | `npm run build` |
+| Deploy command | `npx wrangler deploy` |
+| Build variable | `NODE_VERSION` = `22.12.0` |
+
+`wrangler.jsonc` sets the worker name `retrohodl` and serves `./dist`, with `dist/404.html` for unknown paths. The `*.pages.dev` noindex rule in `_headers` does not apply to `*.workers.dev`; add the custom domain below and treat the workers.dev URL as private (or disable it in the Worker's Settings > Domains & Routes). Custom domain: Worker > Settings > Domains & Routes > Add > Custom domain > `retrohodl.xyz` (and `www.retrohodl.xyz` with the redirect rule below).
+
+## Route B: Pages
+
+
+### Project settings
 
 | Setting | Value |
 |---|---|
@@ -16,7 +36,7 @@
 
 The build runs the copy check and the Vitest suite first, so a failing test blocks the deploy.
 
-## Custom domain
+### Custom domain
 
 1. Pages project > Custom domains > Set up a domain > `retrohodl.xyz`. Follow the prompt to add the DNS record (automatic if the zone is on Cloudflare).
 2. Add `www.retrohodl.xyz` the same way.
