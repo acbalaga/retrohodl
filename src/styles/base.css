@@ -68,8 +68,9 @@ button { cursor: pointer; }
 
 
 /* ---- layout shell ---- */
+.wordmark, .brand { min-width: 0; }
 .site-header { padding-block: var(--space-5) var(--space-4); }
-.header-inner { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-4); }
+.header-inner { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: var(--space-4); }
 .wordmark {
   font-family: var(--font-display);
   font-size: var(--fs-display);
