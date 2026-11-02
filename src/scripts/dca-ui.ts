@@ -278,6 +278,8 @@ export function initDca(store: Store): { render(): void } {
     computeNow();
   });
 
+  // A link with dca_mode=list but no prices gets the same prefill as switching into list mode.
+  if (s().mode === "list" && s().prices.length === 0) prefillPrices();
   syncInputs();
   return { render: computeNow };
 }
