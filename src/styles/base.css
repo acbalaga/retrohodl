@@ -66,7 +66,6 @@ button { cursor: pointer; }
   padding-inline: var(--page-pad);
 }
 
-.glow { text-shadow: var(--glow-amber); }
 
 /* ---- layout shell ---- */
 .site-header { padding-block: var(--space-5) var(--space-4); }
@@ -89,3 +88,17 @@ main { padding-block: var(--space-4) var(--space-7); outline: none; }
 .site-footer { border-top: 1px solid var(--color-border); padding-block: var(--space-6); }
 .footer-text { color: var(--color-text-muted); font-size: var(--fs-sm); max-width: 70ch; }
 .footer-meta { color: var(--color-text-muted); font-size: var(--fs-sm); margin-top: var(--space-3); }
+
+/* ---- buttons (shared; refined in components.css) ---- */
+.btn {
+  min-height: var(--tap-min);
+  padding: 0 var(--space-4);
+  border: 1px solid var(--color-border-input);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-text);
+  font-weight: 600;
+  transition: border-color 0.12s, background-color 0.12s;
+}
+.btn:hover { border-color: var(--color-amber-dim); }
+.btn[aria-pressed="true"] { border-color: var(--color-amber); color: var(--color-amber); }
