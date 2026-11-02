@@ -1,0 +1,40 @@
+---
+import "../styles/fonts.css";
+import "../styles/tokens.css";
+import "../styles/base.css";
+
+interface Props {
+  noindex?: boolean;
+}
+const { noindex = false } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RetroHODL | DCA, Break-even and Drawdown Calculator</title>
+    <meta name="description" content="Work out DCA cost basis, break-even price after fees, and drawdown recovery. Runs in your browser on the numbers you enter. No sign-up, no tracking." />
+    <link rel="canonical" href="https://retrohodl.xyz/" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#0B0D0A" />
+    {noindex ? <meta name="robots" content="noindex" /> : <meta name="robots" content="index, follow" />}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="RetroHODL" />
+    <meta property="og:url" content="https://retrohodl.xyz/" />
+    <meta property="og:title" content="RetroHODL | DCA, Break-even and Drawdown Calculator" />
+    <meta property="og:description" content="Plain arithmetic on your own numbers. DCA cost basis, break-even after fees, drawdown recovery. Runs in your browser." />
+    <meta property="og:image" content="https://retrohodl.xyz/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="RetroHODL wordmark in amber terminal text on a black background with scanlines." />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body class="crt">
+    <slot />
+  </body>
+</html>
