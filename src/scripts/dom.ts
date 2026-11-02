@@ -131,3 +131,37 @@ export function toneClass(x: number): "pos" | "neg" | "zero" {
 export function toneWord(x: number): string {
   return x > 0 ? "gain" : x < 0 ? "loss" : "no change";
 }
+
+/** Apply (or clear) errors for a set of field ids. `errors` maps input id → message. */
+export function applyFieldErrors(allIds: string[], errors: Map<string, string>): void {
+  for (const id of allIds) setFieldError(id, errors.get(id) ?? null);
+}
+
+export interface FieldBinding {
+  /** write the typed string into app state */
+  set(value: string): void;
+  touched: Set<string>;
+  /** debounced recompute */
+  schedule(): void;
+  /** immediate recompute */
+  now(): void;
+  /** state changed: schedules the URL write */
+  changed(): void;
+}
+
+/**
+ * Wire one text input per the shared input behaviour: update state on `input`, mark touched once the
+ * user has typed a non-empty value or left the field, recompute after a debounce.
+ */
+export function bindField(input: HTMLInputElement, b: FieldBinding): void {
+  input.addEventListener("input", () => {
+    b.set(input.value);
+    if (input.value.trim() !== "") b.touched.add(input.id);
+    b.changed();
+    b.schedule();
+  });
+  input.addEventListener("blur", () => {
+    b.touched.add(input.id);
+    b.now();
+  });
+}

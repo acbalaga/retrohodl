@@ -1,4 +1,5 @@
 import { parseQuery } from "../lib/url-state";
+import { initDca } from "./dca-ui";
 import { createStore } from "./store";
 import { setActiveTab, initTabs } from "./tabs";
 import { initCrtToggle, initToolbar } from "./toolbar";
@@ -18,6 +19,7 @@ function boot(): void {
     store.state.tab = id;
     store.changed();
   });
+  panels.push(initDca(store));
   initToolbar(store, { hadInvalid, onCurrencyChange: () => panels.forEach((p) => p.render()) });
   panels.forEach((p) => p.render());
 }

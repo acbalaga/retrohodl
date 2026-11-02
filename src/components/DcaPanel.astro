@@ -1,0 +1,72 @@
+---
+import Field from "./Field.astro";
+---
+
+<div class="panel-head">
+  <h2 class="panel-title glow">DCA Plan</h2>
+  <p class="panel-intro">Buy the same amount each period. See what the numbers add up to.</p>
+</div>
+<div class="panel-grid">
+  <form class="card" id="dca-form" novalidate>
+    <div class="fields">
+      <Field id="dca-amount" label="Amount per period" prefix="currency" hint="Cash spent each period, fees included." />
+      <Field id="dca-fee" label="Fee per buy" suffix="%" hint="Taken out of each amount before buying." />
+      <fieldset class="field">
+        <legend>Prices</legend>
+        <div class="radio-group">
+          <label class="radio" for="dca-mode-growth"><input type="radio" name="dca-mode" id="dca-mode-growth" value="growth" />Start price + % change</label>
+          <label class="radio" for="dca-mode-list"><input type="radio" name="dca-mode" id="dca-mode-list" value="list" />Enter each price</label>
+        </div>
+      </fieldset>
+      <div id="dca-growth-fields" class="fields">
+        <Field id="dca-start" label="Start price" prefix="currency" hint="Price in period 1." />
+        <Field id="dca-change" label="Change per period" suffix="%" hint="Your own assumption. Negative for a falling price." />
+      </div>
+      <Field id="dca-periods" label="Number of periods" hint="1 to 600." />
+      <div id="dca-list-fields" hidden>
+        <ol id="dca-rows" class="rows"></ol>
+        <p class="error" id="dca-prices-error" hidden></p>
+        <div class="rows-actions"><button id="dca-add-row" class="btn" type="button">Add price</button></div>
+      </div>
+      <Field id="dca-final" label="Final price" prefix="currency" hint="Price used to value the units. Selling fees are not included; see Break-even." />
+    </div>
+    <div class="card-actions"><button id="dca-reset" class="btn btn-text" type="button">Reset</button></div>
+  </form>
+
+  <div class="card">
+    <div class="results" id="dca-results">
+      <div data-state="empty" class="result-empty"><span data-out="empty-text">Fill in the fields to see results.</span></div>
+      <div data-state="invalid" class="result-invalid" hidden><span data-out="invalid-text"></span></div>
+      <div data-state="ok" hidden>
+        <div class="headline">
+          <p class="headline-label">Profit / loss at final price</p>
+          <p class="headline-value" data-out="pnl"></p>
+          <p class="headline-sub"><span data-out="pnlPct"></span> <span data-out="pnlWord"></span></p>
+        </div>
+        <dl class="stats">
+          <div class="stat"><dt>Total invested</dt><dd data-out="totalInvested"></dd></div>
+          <div class="stat"><dt>Fees paid</dt><dd data-out="totalFees"></dd></div>
+          <div class="stat"><dt>Units acquired</dt><dd data-out="unitsAcquired"></dd></div>
+          <div class="stat"><dt>Avg cost per unit (incl. fees)</dt><dd data-out="avgCostInclFees"></dd></div>
+          <div class="stat"><dt>Avg price paid (excl. fees)</dt><dd data-out="avgPriceExclFees"></dd></div>
+          <div class="stat"><dt>Value at final price</dt><dd data-out="currentValue"></dd></div>
+          <div class="stat"><dt>Periods</dt><dd data-out="periods"></dd></div>
+        </dl>
+        <p class="notes" data-out="notes" hidden></p>
+        <details>
+          <summary data-out="tableSummary">Per-period table</summary>
+          <div class="table-wrap" role="region" aria-label="Per-period table" tabindex="0">
+            <table>
+              <caption class="sr-only">DCA purchases by period</caption>
+              <thead>
+                <tr><th scope="col">#</th><th scope="col">Price</th><th scope="col">Spent</th><th scope="col">Fee</th><th scope="col">Units</th><th scope="col">Total units</th><th scope="col">Avg cost</th></tr>
+              </thead>
+              <tbody data-out="tbody"></tbody>
+            </table>
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+</div>
+<p class="sr-only" id="dca-live" aria-live="polite"></p>

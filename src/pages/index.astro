@@ -4,6 +4,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Tabs from "../components/Tabs.astro";
 import Toolbar from "../components/Toolbar.astro";
+import DcaPanel from "../components/DcaPanel.astro";
 ---
 
 <Base skipTo="calculator">
@@ -12,7 +13,7 @@ import Toolbar from "../components/Toolbar.astro";
     <noscript><p class="noscript">These calculators need JavaScript. Nothing you type is sent anywhere.</p></noscript>
     <Toolbar />
     <Tabs>
-      <div slot="dca"><h2 class="panel-title glow">DCA Plan</h2></div>
+      <div slot="dca"><DcaPanel /></div>
       <div slot="be"><h2 class="panel-title glow">Break-even</h2></div>
       <div slot="dd"><h2 class="panel-title glow">Drawdown</h2></div>
     </Tabs>

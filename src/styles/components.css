@@ -141,3 +141,8 @@ summary { cursor: pointer; min-height: var(--tap-min); display: flex; align-item
   font-family: var(--font-mono); font-size: var(--fs-xs);
 }
 .rows-actions { margin-top: var(--space-3); }
+
+/* ---------- overrides ---------- */
+.field label.radio { display: flex; margin-bottom: 0; font-weight: 400; font-size: var(--fs-base); }
+.toolbar { align-items: flex-start; }
+.share { padding-top: calc(1.3125rem + var(--space-2)); }
