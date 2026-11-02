@@ -5,6 +5,8 @@ import Footer from "../components/Footer.astro";
 import Tabs from "../components/Tabs.astro";
 import Toolbar from "../components/Toolbar.astro";
 import DcaPanel from "../components/DcaPanel.astro";
+import BreakEvenPanel from "../components/BreakEvenPanel.astro";
+import DrawdownPanel from "../components/DrawdownPanel.astro";
 ---
 
 <Base skipTo="calculator">
@@ -14,8 +16,8 @@ import DcaPanel from "../components/DcaPanel.astro";
     <Toolbar />
     <Tabs>
       <div slot="dca"><DcaPanel /></div>
-      <div slot="be"><h2 class="panel-title glow">Break-even</h2></div>
-      <div slot="dd"><h2 class="panel-title glow">Drawdown</h2></div>
+      <div slot="be"><BreakEvenPanel /></div>
+      <div slot="dd"><DrawdownPanel /></div>
     </Tabs>
   </main>
   <Footer />

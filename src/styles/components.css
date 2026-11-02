@@ -17,7 +17,7 @@
 .card-actions { margin-top: var(--space-5); display: flex; gap: var(--space-3); }
 
 /* ---------- fields ---------- */
-.field label, .field legend, legend.field-legend { font-size: var(--fs-sm); font-weight: 600; color: var(--color-text); display: block; margin-bottom: var(--space-2); padding: 0; }
+.field label, .field legend, .field-legend { font-size: var(--fs-sm); font-weight: 600; color: var(--color-text); display: block; margin-bottom: var(--space-2); padding: 0; }
 .field .optional { font-weight: 400; color: var(--color-text-muted); }
 .input-wrap { position: relative; }
 input[type="text"], select {

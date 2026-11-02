@@ -66,7 +66,8 @@ export function initDca(store: Store): { render(): void } {
 
     const addError = (e: { field: string; code: string; message: string; row?: number }) => {
       if (e.field === "prices" && e.row === undefined) {
-        if (e.code === "required" && !touched.has("dca-prices")) return;
+        // Only when no rows exist: showing it while blank rows exist makes the layout jump under the cursor.
+        if (e.code === "required" && (!touched.has("dca-prices") || d.prices.length > 0)) return;
         listError = e.message;
         shown++;
         return;

@@ -1,5 +1,7 @@
 import { parseQuery } from "../lib/url-state";
+import { initBreakEven } from "./breakeven-ui";
 import { initDca } from "./dca-ui";
+import { initDrawdown } from "./drawdown-ui";
 import { createStore } from "./store";
 import { setActiveTab, initTabs } from "./tabs";
 import { initCrtToggle, initToolbar } from "./toolbar";
@@ -19,7 +21,7 @@ function boot(): void {
     store.state.tab = id;
     store.changed();
   });
-  panels.push(initDca(store));
+  panels.push(initDca(store), initBreakEven(store), initDrawdown(store));
   initToolbar(store, { hadInvalid, onCurrencyChange: () => panels.forEach((p) => p.render()) });
   panels.forEach((p) => p.render());
 }
