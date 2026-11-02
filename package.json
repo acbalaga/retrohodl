@@ -10,7 +10,7 @@
     "test": "vitest run",
     "check": "astro check",
     "lint:copy": "node scripts/check-copy.mjs",
-    "build": "astro build",
+    "build": "npm run lint:copy && vitest run && astro check && astro build",
     "preview": "astro preview",
     "images": "node scripts/make-images.mjs"
   },
