@@ -2,7 +2,7 @@
 import Disclaimer from "./Disclaimer.astro";
 
 interface Props {
-  /** TODO(plan): the 404 page needs its own h1 ("404"), so the wordmark is a paragraph there. */
+  /** false on the 404 page, which has its own h1 */
   wordmarkIsH1?: boolean;
 }
 const { wordmarkIsH1 = true } = Astro.props;
