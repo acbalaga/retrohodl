@@ -5,7 +5,7 @@ A static, no-backend calculator site with three tabs: DCA Plan, Break-even and D
 ## Develop
 
 ```bash
-nvm use            # Node 22.12.0 (.nvmrc)
+nvm use            # Node 22.23.4 (.nvmrc)
 npm install
 npm run dev        # local dev server
 npm test           # Vitest (calc, parse, format, url-state)

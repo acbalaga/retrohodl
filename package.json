@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "engines": {
-    "node": ">=22.12.0"
+    "node": ">=22.23.4"
   },
   "scripts": {
     "dev": "astro dev",
@@ -17,12 +17,12 @@
   "dependencies": {
     "@fontsource/jetbrains-mono": "5.3.0",
     "@fontsource/vt323": "5.3.0",
-    "astro": "5.18.2"
+    "astro": "7.4.5"
   },
   "devDependencies": {
     "@astrojs/check": "0.9.12",
     "sharp": "0.35.5",
     "typescript": "5.9.3",
-    "vitest": "3.2.7"
+    "vitest": "5.1.0"
   }
 }

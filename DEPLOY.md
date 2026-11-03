@@ -13,7 +13,7 @@ Workers & Pages > Create > Import a repository, then:
 | Root directory | `/` (blank). This is a folder path, not a branch name |
 | Build command | `npm run build` |
 | Deploy command | `npx wrangler deploy` |
-| Build variable | `NODE_VERSION` = `22.12.0` |
+| Build variable | `NODE_VERSION` = `22.23.4` |
 
 `wrangler.jsonc` (committed to the repo root) names the Worker `retrohodl` and serves `./dist`, with `dist/404.html` for unknown paths. It must be on `main` before the first deploy, otherwise the build passes and `wrangler deploy` fails. The Workers build flow has no "output directory" field; that setting lives in `wrangler.jsonc`.
 
@@ -42,7 +42,7 @@ Keep Cloudflare Web Analytics **off** (Analytics & Logs > Web Analytics, or the 
 | Build output directory | `dist` |
 | Root directory | `/` (blank) |
 | Build system version | v3 (latest) |
-| Environment variable (Production and Preview) | `NODE_VERSION` = `22.12.0` |
+| Environment variable (Production and Preview) | `NODE_VERSION` = `22.23.4` |
 | Preview deployments | Enabled for non-production branches (`public/_headers` adds `X-Robots-Tag: noindex` on `*.pages.dev`) |
 | Web Analytics | Off (see above) |
 
@@ -65,7 +65,7 @@ for u in / /_astro/ /favicon.svg /og.png /robots.txt /licenses/fonts.txt; do ech
 Get a real `/_astro/` file name from the page source (`/_astro/index.<hash>.css`) and request that instead of `/_astro/`.
 
 - Every asset returns `200` with the right content type (`text/css`, `text/javascript`, `image/png`). A `307` or `text/html` for CSS or JS means another server is answering for the domain (see below).
-- `curl -sI https://retrohodl.xyz/` shows the `content-security-policy` header with `connect-src 'none'`.
+- `curl -sI https://retrohodl.xyz/` shows the `content-security-policy` header with `connect-src 'none'` and `strict-transport-security`.
 - `https://retrohodl.xyz/nope` returns `404`.
 - `https://www.retrohodl.xyz/?cur=PHP` redirects to `https://retrohodl.xyz/?cur=PHP`.
 - A share link opened in a private window reproduces the state.
@@ -77,6 +77,6 @@ Get a real `/_astro/` file name from the page source (`/_astro/index.<hash>.css`
 |---|---|
 | Build fails at **Cloning**, before install | The configured branch was deleted (for example a merged plan branch), or Root directory is set to a branch name. Set the branch to `main` and Root directory to `/` |
 | Build passes, **Deploy** step fails | `wrangler.jsonc` is missing from the deployed branch. Merge it to `main` |
-| Build fails on install or tests with an engine or version error | `NODE_VERSION` is not set. Set it to `22.12.0` for Production and Preview |
+| Build fails on install or tests with an engine or version error | `NODE_VERSION` is not set. Set it to `22.23.4` for Production and Preview |
 | Page loads **unstyled and nothing works**; CSS and JS return `307` or `404` | The domain is answered partly by another server. Signature: `/` is served by the Worker (has the CSP header) but `/_astro/*`, `/favicon.svg` and `robots.txt` come from a different server (nginx, an `x-service` header, an `AWSALB` cookie). Cause: leftover DNS records, a registrar parking or forwarding service, or a Worker Route that only matches `/`. Fix: use a Custom domain, delete the old `A`, `AAAA` and `CNAME` records, turn off registrar forwarding. Confirm the CSS URL returns CSS text |
 | Console error about `cloudflareinsights.com/beacon.min.js` | Web Analytics is on. Turn it off; harmless otherwise |

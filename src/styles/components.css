@@ -15,6 +15,7 @@
 }
 .fields { display: flex; flex-direction: column; gap: var(--space-5); }
 .card-actions { margin-top: var(--space-5); display: flex; gap: var(--space-3); }
+.card-actions .btn-text { padding-inline: 0; }
 
 /* ---------- fields ---------- */
 .field label, .field legend, .field-legend { font-size: var(--fs-sm); font-weight: 600; color: var(--color-text); display: block; margin-bottom: var(--space-2); padding: 0; }
